@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Deep dark indigo-black */
+    --background: 0.1 0.025 270;
+    --foreground: 0.97 0 0;
+    --card: 0.14 0.03 268;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.16 0.032 268;
+    --popover-foreground: 0.97 0 0;
+    /* Electric violet/indigo primary */
+    --primary: 0.72 0.22 290;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.18 0.035 268;
+    --secondary-foreground: 0.85 0 0;
+    --muted: 0.17 0.03 268;
+    --muted-foreground: 0.58 0.03 260;
+    /* Electric cyan accent */
+    --accent: 0.82 0.18 200;
+    --accent-foreground: 0.08 0.025 270;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.22 0.04 265;
+    --input: 0.2 0.035 265;
+    --ring: 0.72 0.22 290;
+    --chart-1: 0.72 0.22 290;
+    --chart-2: 0.82 0.18 200;
+    --chart-3: 0.68 0.19 310;
+    --chart-4: 0.75 0.16 250;
+    --chart-5: 0.65 0.2 280;
+    --sidebar: 0.14 0.03 268;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.72 0.22 290;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.17 0.03 268;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.22 0.04 265;
+    --sidebar-ring: 0.72 0.22 290;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Legacy teal-glow kept for compatibility, now maps to primary violet */
+  .teal-glow {
+    box-shadow: 0 0 24px oklch(0.72 0.22 290 / 0.4);
+  }
+  .teal-glow-sm {
+    box-shadow: 0 0 12px oklch(0.72 0.22 290 / 0.3);
+  }
+
+  /* New primary glow */
+  .primary-glow {
+    box-shadow: 0 0 24px oklch(0.72 0.22 290 / 0.4);
+  }
+  .primary-glow-lg {
+    box-shadow: 0 0 40px oklch(0.72 0.22 290 / 0.35), 0 0 80px
+      oklch(0.72 0.22 290 / 0.15);
+  }
+
+  /* Cyan accent glow */
+  .accent-glow {
+    box-shadow: 0 0 20px oklch(0.82 0.18 200 / 0.35);
+  }
+
+  /* Glass card effect */
+  .card-glass {
+    background: oklch(0.14 0.03 268 / 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.22 0.04 265 / 0.8);
+    box-shadow: 0 8px 32px oklch(0.05 0.02 270 / 0.5), inset 0 1px 0
+      oklch(0.3 0.06 285 / 0.2);
+  }
+
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px oklch(0.72 0.22 290 / 0.2), 0 0 0 1px
+      oklch(0.72 0.22 290 / 0.15);
+  }
+
+  .gradient-hero {
+    background: radial-gradient(
+        ellipse 80% 60% at 50% -10%,
+        oklch(0.2 0.08 285 / 0.6) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 80% 80%,
+        oklch(0.18 0.06 200 / 0.3) 0%,
+        transparent 55%
+      ), oklch(0.1 0.025 270);
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.78 0.22 290),
+      oklch(0.82 0.18 200)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      oklch(0.72 0.22 290 / 0.6),
+      oklch(0.82 0.18 200 / 0.4),
+      oklch(0.72 0.22 290 / 0.6)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Subtle grid pattern */
+  .grid-pattern {
+    background-image: linear-gradient(
+        oklch(0.72 0.22 290 / 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, oklch(0.72 0.22 290 / 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
